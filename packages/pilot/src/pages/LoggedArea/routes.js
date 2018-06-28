@@ -1,13 +1,16 @@
 import Balance32 from 'emblematic-icons/svg/Extract32.svg'
 import Configuration32 from 'emblematic-icons/svg/Configuration32.svg'
 import Transaction32 from 'emblematic-icons/svg/Transaction32.svg'
+
 import Withdraw32 from 'emblematic-icons/svg/Withdraw32.svg'
+import Store32 from 'emblematic-icons/svg/Store32.svg'
 
 import { Balance } from '../Balance'
 import CompanySettings from '../CompanySettings'
 import Transactions from '../Transactions'
 import UserSettings from '../UserSettings'
 import Withdraw from '../Withdraw'
+import Recipients from '../Recipients'
 
 export default {
   balance: {
@@ -53,6 +56,13 @@ export default {
     path: '/settings',
     component: CompanySettings,
     icon: Configuration32,
+    exact: true,
+  },
+  recipients: {
+    title: 'pages.recipients.title',
+    path: '/recipients',
+    component: Recipients,
+    icon: Store32,
     exact: true,
   },
 }
