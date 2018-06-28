@@ -864,6 +864,10 @@
         "automatic_anticipation_1025_delay": "Antecipação 10/25 (delay)",
         "automatic_anticipation_days": "Antecipação 10/25 (dias)",
         "automatic_anticipation_enabled": "Antecipação automática",
+        "automatic_anticipation_enabled_boolean": {
+          "true": "Sim",
+          "false": "Não"
+        },
         "automatic_anticipation_type_of": {
           "full": "Completa",
           "1025": "10/25"
@@ -877,6 +881,7 @@
         "date_updated": "Data da atualização",
         "details": "Detalhes",
         "id": "Id do Recebedor",
+        "show_details": "Ver Detalhes",
         "status_of": {
           "active": "Ativo",
           "affiliation": "Em Afiliação",
@@ -890,10 +895,15 @@
         "status": "Status",
         "transfer_day": "Dia da transferência",
         "transfer_enabled": "Transferência habilitada",
+        "transfer_enabled_boolean": {
+          "true": "Sim",
+          "false": "Não"
+        },
         "transfer_interval_of": {
           "daily": "Diária",
           "weekly": "Semanal",
-          "monthly": "Mensal"
+          "monthly": "Mensal",
+          "null": "---"
         },
         "transfer_interval": "Intervalo de transferência"
       }
