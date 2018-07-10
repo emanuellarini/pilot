@@ -20,10 +20,10 @@ class ReportCard extends Component {
 
   render () {
     const {
+      actions,
       report,
       subtitle,
       title,
-      actions,
     } = this.props
     return (
       <CardSection>
