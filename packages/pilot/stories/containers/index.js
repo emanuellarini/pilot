@@ -38,8 +38,12 @@ import WithdrawForm from './Withdraw/Form'
 import WithdrawResultSuccess from './Withdraw/Result/Success'
 import WithdrawResultError from './Withdraw/Result/Error'
 import WithdrawSummary from './Withdraw/Summary'
+import SelectAccount from './AddRecipient/BankAccountStep/SelectAccount'
 
 storiesOf('Containers', module)
+  .add('Select Account', () => (
+    <SelectAccount />
+  ))
   .add('Recipient list', () => (
     <RecipientListState />
   ))
