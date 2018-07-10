@@ -29,7 +29,7 @@ class ReportCard extends Component {
       <CardSection>
         <CardSectionDoubleLineTitle
           actions={actions}
-          collapsed={!this.state.collapsed}
+          collapsed={this.state.collapsed}
           icon={
             <Legend
               color={reportStatusLegend[report.status].color}
