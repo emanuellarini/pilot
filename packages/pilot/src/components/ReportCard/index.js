@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   CardContent,
@@ -10,7 +10,7 @@ import moment from 'moment'
 import reportStatusLegend from '../../models/reportStatusLegend'
 import style from './styles.css'
 
-class ReportCard extends React.Component {
+class ReportCard extends Component {
   constructor () {
     super()
     this.state = {
