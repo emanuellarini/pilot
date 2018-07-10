@@ -6,7 +6,6 @@ import {
   CardSectionDoubleLineTitle,
   Legend,
 } from 'former-kit'
-import moment from 'moment'
 import reportStatusLegend from '../../models/reportStatusLegend'
 import style from './styles.css'
 
@@ -14,15 +13,17 @@ class ReportCard extends Component {
   constructor () {
     super()
     this.state = {
-      collapsed: false,
+      collapsed: true,
     }
   }
 
   render () {
     const {
       actions,
-      report,
+      filterLabel,
       subtitle,
+      status,
+      statusLabel,
       title,
     } = this.props
     return (
@@ -32,8 +33,8 @@ class ReportCard extends Component {
           collapsed={this.state.collapsed}
           icon={
             <Legend
-              color={reportStatusLegend[report.status].color}
-              acronym={reportStatusLegend[report.status].acronym}
+              color={reportStatusLegend[status].color}
+              acronym={reportStatusLegend[status].acronym}
               hideLabel
             />
           }
@@ -43,10 +44,10 @@ class ReportCard extends Component {
           subtitle={subtitle}
           title={title}
         />
-        {this.state.collapsed &&
+        {!this.state.collapsed &&
           <CardContent className={style.reportDetails}>
-            <span>Filtros</span>
-            <span>Status: {reportStatusLegend[report.status].text}</span>
+            <span>{filterLabel}</span>
+            <span>{statusLabel}: {reportStatusLegend[status].text}</span>
           </CardContent>
         }
       </CardSection>
@@ -56,20 +57,10 @@ class ReportCard extends Component {
 
 ReportCard.propTypes = {
   actions: PropTypes.func.isRequired,
-  report: PropTypes.shape({
-    created_at: PropTypes.instanceOf(moment),
-    data: PropTypes.shape({
-      company_id: PropTypes.string,
-      created_at: PropTypes.instanceOf(moment),
-      updated_at: PropTypes.instanceOf(moment),
-    }).isRequired,
-    id: PropTypes.string,
-    type: PropTypes.string,
-    status: PropTypes.string,
-    updated_at: PropTypes.instanceOf(moment),
-    url: PropTypes.string,
-  }).isRequired,
+  filterLabel: PropTypes.string.isRequired,
   subtitle: PropTypes.node.isRequired,
+  status: PropTypes.string.isRequired,
+  statusLabel: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
 }
 

@@ -100,16 +100,7 @@ class ReportCardState extends React.PureComponent {
     super(props)
     this.state = {
       ...reportData,
-      expandedCard: false,
     }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick () {
-    this.setState({
-      expandedCard: !this.state.expandedCard,
-    })
   }
 
   render () {
@@ -117,10 +108,11 @@ class ReportCardState extends React.PureComponent {
       <Card>
         <ReportCard
           actions={renderActions(reportData)}
-          cardExpanded={this.state.expandedCard}
-          report={reportData}
-          title="Carta de circularização 2017"
+          filterLabel="Filtros"
           subtitle="Período: 01/01/2017 a 01/06/2017   |   Criado em 10/05/2018"
+          status={reportData.status}
+          statusLabel="Status"
+          title="Carta de circularização 2017"
         />
       </Card>
     )
