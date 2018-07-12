@@ -8,11 +8,12 @@ import CardConfirmation from './Refund/CardConfirmation'
 import CardForm from './Refund/CardForm'
 import CardResult from './Refund/CardResult'
 import Balance from './Balance'
-import RecipientListState from './RecipientList'
 import {
   ManualReviewApproveForm,
   ManualReviewRefuseForm,
 } from './ManualReview/Form'
+import RecipientListState from './RecipientList'
+import RecipientStep from './RecipientStep'
 import {
   ManualReviewApproveResult,
   ManualReviewRefuseResult,
@@ -42,6 +43,9 @@ import WithdrawSummary from './Withdraw/Summary'
 storiesOf('Containers', module)
   .add('Recipient list', () => (
     <RecipientListState />
+  ))
+  .add('RecipientStep', () => (
+    <RecipientStep />
   ))
   .add('Manual review approve form', () => (
     <ManualReviewApproveForm />
