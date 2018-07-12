@@ -28,30 +28,32 @@ class ReportCard extends Component {
       title,
     } = this.props
     return (
-      <CardSection>
-        <CardSectionDoubleLineTitle
-          actions={actions}
-          collapsed={this.state.collapsed}
-          icon={
-            <Legend
-              color={reportStatusLegend[status].color}
-              acronym={reportStatusLegend[status].acronym}
-              hideLabel
-            />
+      <CardContent>
+        <CardSection>
+          <CardSectionDoubleLineTitle
+            actions={actions}
+            collapsed={this.state.collapsed}
+            icon={
+              <Legend
+                color={reportStatusLegend[status].color}
+                acronym={reportStatusLegend[status].acronym}
+                hideLabel
+              />
+            }
+            onClick={
+              () => this.setState({ collapsed: !this.state.collapsed })
+            }
+            subtitle={subtitle}
+            title={title}
+          />
+          {!this.state.collapsed &&
+            <CardContent className={style.reportDetails}>
+              <span>{filterLabel}</span>
+              <span>{statusLabel}: {reportStatusLegend[status].text}</span>
+            </CardContent>
           }
-          onClick={
-            () => this.setState({ collapsed: !this.state.collapsed })
-          }
-          subtitle={subtitle}
-          title={title}
-        />
-        {!this.state.collapsed &&
-          <CardContent className={style.reportDetails}>
-            <span>{filterLabel}</span>
-            <span>{statusLabel}: {reportStatusLegend[status].text}</span>
-          </CardContent>
-        }
-      </CardSection>
+        </CardSection>
+      </CardContent>
     )
   }
 }

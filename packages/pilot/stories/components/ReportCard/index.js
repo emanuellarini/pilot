@@ -6,6 +6,7 @@ import {
   PopoverContent,
   PopoverMenu,
 } from 'former-kit'
+import Section from '../../Section'
 import { action } from '@storybook/addon-actions'
 
 import DownloadIcon from 'emblematic-icons/svg/Download32.svg'
@@ -107,16 +108,34 @@ class ReportCardState extends React.PureComponent {
 
   render () {
     return (
-      <Card>
-        <ReportCard
-          actions={renderActions(reportData)}
-          filterLabel="Filtros"
-          subtitle="Período: 01/01/2017 a 01/06/2017   |   Criado em 10/05/2018"
-          status={reportData.status}
-          statusLabel="Status"
-          title="Carta de circularização 2017"
-        />
-      </Card>
+      <Section>
+        <Card>
+          <ReportCard
+            actions={renderActions(reportData)}
+            filterLabel="Filtros"
+            subtitle="Período: 01/01/2017 a 01/06/2017   |   Criado em 10/05/2018"
+            status={reportData.status}
+            statusLabel="Status"
+            title="Carta de circularização 2017"
+          />
+          <ReportCard
+            actions={renderActions('canceled')}
+            filterLabel="Filtros"
+            subtitle="Período: 01/01/2017 a 01/06/2017   |   Criado em 10/05/2018"
+            status="canceled"
+            statusLabel="Status"
+            title="Carta de circularização 2017"
+          />
+          <ReportCard
+            actions={renderActions('processing')}
+            filterLabel="Filtros"
+            subtitle="Período: 01/01/2017 a 01/06/2017   |   Criado em 10/05/2018"
+            status="processing"
+            statusLabel="Status"
+            title="Carta de circularização 2017"
+          />
+        </Card>
+      </Section>
     )
   }
 }
