@@ -5,6 +5,7 @@
   & span:first-child {
     display: block;
     color: #a0a0a0;
+    padding-bottom: 4px;
   }
 }
 

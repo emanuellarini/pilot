@@ -12,6 +12,7 @@ import DownloadIcon from 'emblematic-icons/svg/Download32.svg'
 import TrashIcon from 'emblematic-icons/svg/Trash32.svg'
 import ReprocessIcon from 'emblematic-icons/svg/Reprocess32.svg'
 import ReportCard from '../../../src/components/ReportCard'
+import style from './style.css'
 
 const items = [
   {
@@ -76,13 +77,14 @@ const renderActions = (report) => {
       />
       <Popover
         content={
-          <Fragment>
+          <div className={style.exportPopover}>
             <PopoverContent>
               <strong>Exportar para:</strong>
             </PopoverContent>
             <PopoverMenu items={items} />
-          </Fragment>
+          </div>
         }
+        placement="bottomEnd"
       >
         <Button
           fill="outline"

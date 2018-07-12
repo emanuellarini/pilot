@@ -7,7 +7,8 @@ import {
   Legend,
 } from 'former-kit'
 import reportStatusLegend from '../../models/reportStatusLegend'
-import style from './styles.css'
+import style from './style.css'
+
 
 class ReportCard extends Component {
   constructor () {
