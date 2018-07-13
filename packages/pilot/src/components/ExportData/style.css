@@ -1,0 +1,11 @@
+.exportPopover {
+  width: 142px;
+  font-size: 12px;
+  color: #757575;
+
+  & strong {
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
