@@ -65,7 +65,7 @@ TotalDisplay.propTypes = {
     'end',
     'start',
   ]),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   amount: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   unit: PropTypes.string,
