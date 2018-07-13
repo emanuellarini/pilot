@@ -37,12 +37,13 @@ const ExportData = ({
         <PopoverMenu items={items} />
       </div>
     }
-    placement="bottomEnd"
+    placement="bottomStart"
   >
     <Button
       fill="outline"
       icon={<DownloadIcon width={16} height={16} />}
-      size="default"
+      size="tiny"
+      relevance="low"
       onClick={onClick}
     >
       {title}
