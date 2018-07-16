@@ -119,8 +119,8 @@
     "antifraud_analyses": {
       "status": {
         "approve": "aprovar",
-        "refuse": "reprovar",
         "approved": "aprovada",
+        "refuse": "reprovar",
         "refused": "reprovada"
       }
     },
