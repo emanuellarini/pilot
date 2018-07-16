@@ -3,5 +3,9 @@
   "env": {
     "browser": true,
     "jest": true
+  },
+  "rules": {
+    "sort-imports": "error",
+    "sort-keys": "error"
   }
 }
