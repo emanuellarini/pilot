@@ -6,45 +6,32 @@ import {
   PopoverContent,
   PopoverMenu,
 } from 'former-kit'
-import DownloadIcon from 'emblematic-icons/svg/Download32.svg'
 import style from './style.css'
 
-const items = [
-  {
-    title: 'PDF',
-    action: () => null,
-  },
-  {
-    title: 'Excel',
-    action: () => null,
-  },
-  {
-    title: 'csv',
-    action: () => null,
-  },
-]
-
 const ExportData = ({
-  onClick,
+  icon,
+  exportOptions,
+  onExport,
+  subTitle,
   title,
 }) => (
   <Popover
     content={
       <div className={style.exportPopover}>
         <PopoverContent>
-          <strong>Exportar para:</strong>
+          <strong>{subTitle}</strong>
         </PopoverContent>
-        <PopoverMenu items={items} />
+        <PopoverMenu items={exportOptions} />
       </div>
     }
-    placement="bottomStart"
+    placement="bottomEnd"
   >
     <Button
       fill="outline"
-      icon={<DownloadIcon width={16} height={16} />}
+      icon={icon}
       size="tiny"
       relevance="low"
-      onClick={onClick}
+      onClick={onExport}
     >
       {title}
     </Button>
@@ -52,7 +39,13 @@ const ExportData = ({
 )
 
 ExportData.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  icon: PropTypes.node.isRequired,
+  exportOptions: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    mine: PropTypes.string.isRequired,
+  }).isRequired,
+  onExport: PropTypes.func.isRequired,
+  subTitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }
 
