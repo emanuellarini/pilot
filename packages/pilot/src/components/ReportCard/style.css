@@ -1,10 +1,13 @@
+@import "former-kit-skin-pagarme/dist/styles/colors.css";
+@import "former-kit-skin-pagarme/dist/styles/typography.css";
+
 .reportDetails {
-  color: #757575;
-  font-size: 13px;
+  color: var(--color-light-steel-100);
+  font-size: var(--caption-font-size);
 
   & span:first-child {
     display: block;
-    color: #a0a0a0;
+    color: var(--color-light-chromium-100);
     padding-bottom: 4px;
   }
 }
