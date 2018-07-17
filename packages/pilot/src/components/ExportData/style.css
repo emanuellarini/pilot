@@ -1,11 +1,13 @@
+@import "former-kit-skin-pagarme/dist/styles/colors.css";
+@import "former-kit-skin-pagarme/dist/styles/typography.css";
+
 .exportPopover {
-  width: 142px;
-  font-size: 12px;
-  color: #757575;
+  color: var(--color-light-steel-100);
+  font-size: var(--caption-font-size);
 
   & strong {
-    text-align: center;
     font-weight: bold;
+    text-align: center;
   }
 }
 
