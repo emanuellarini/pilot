@@ -12,6 +12,7 @@ import { rootEpic, rootReducer } from '../pages/actions'
 
 const states = [
   'account.sessionId',
+  'anticipation.bulkId',
 ]
 
 const enhancer = compose(
