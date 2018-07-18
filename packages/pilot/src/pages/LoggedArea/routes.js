@@ -8,7 +8,7 @@ import CompanySettings from '../CompanySettings'
 import Transactions from '../Transactions'
 import UserSettings from '../UserSettings'
 import Withdraw from '../Withdraw'
-import Anticipation from '../Anticipation'
+import { Anticipation } from '../Anticipation'
 
 export default {
   anticipationRoot: {
