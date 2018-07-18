@@ -19,29 +19,36 @@ import {
   CPF,
   CNPJ,
 } from 'cpf_cnpj'
-import { times, identity, merge } from 'ramda'
+import {
+  times,
+  identity,
+  merge,
+} from 'ramda'
 import recipientTypes from '../../models/recipientTypes'
 import styles from './style.css'
 
 function required (value) {
-  return value ? false : 'Esse campo não pode ficar em branco'
+  return value ? false : this.props.t('pages.recipients.identification.error_required_value')
 }
 
+// const required = t => value => (value ? false : t('
+// pages.recipients.identification.error_required_value'))
+
 function validateCpf (cpf) {
-  return CPF.isValid(cpf) ? false : 'CPF inválido'
+  return CPF.isValid(cpf) ? false : this.props.t('pages.recipients.identification.error_validate_cpf')
 }
 
 function validateCnpj (cnpj) {
-  return CNPJ.isValid(cnpj) ? false : 'CNPJ inválido'
+  return CNPJ.isValid(cnpj) ? false : this.props.t('pages.recipients.identification.error_validate_cnpj')
 }
 
 function validateEmail (email) {
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return emailRegex.test(email) ? false : 'Este e-mail não é válido'
+  return emailRegex.test(email) ? false : this.props.t('page.recipients.identification.error_validate_email')
 }
 
 function validatePhone (phone) {
-  return phone.match(/\d/g).length === 11 ? false : 'Digite um telefone de 9 dígitos com DDD'
+  return phone.match(/\d/g).length === 11 ? false : this.props.t('page.recipients.identification.error_validate_phone')
 }
 
 // function isNumber (value) {
@@ -52,7 +59,7 @@ class RecipientStep extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      valueRadio: 'physic',
+      valueRadio: 'physical',
       checked: props.checked,
       valueCheck: '',
       value: 0,
@@ -77,6 +84,13 @@ class RecipientStep extends Component {
     this.handleCheck = this.handleCheck.bind(this)
     this.handleMaskChange = this.handleMaskChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    // functions de cima
+    this.required = required.bind(this) // pq ta la fora
+    this.validateCpf = validateCpf.bind(this)
+    this.validateCnpj = validateCnpj.bind(this)
+    this.validateEmail = validateEmail.bind(this)
+    this.validatePhone = validatePhone.bind(this)
   }
 
   handleChange (event) {
@@ -169,6 +183,7 @@ class RecipientStep extends Component {
 
   render () {
     console.log(this.state.data)
+    console.log(this.props)
     const {
       disabled,
       error,
@@ -178,6 +193,7 @@ class RecipientStep extends Component {
       maskCpf,
       maskCnpj,
       maskPhone,
+      t,
     } = this.props
 
     const {
@@ -197,41 +213,39 @@ class RecipientStep extends Component {
           onSubmit={this.handleSubmit}
           validateOn={'blur' || 'focus'}
           validation={{
-            cpfInput: valueRadio === 'physic' ? [required, validateCpf] : [],
-            cnpjInput: valueRadio === 'legal' ? [required, validateCnpj] : [],
-            nameCpf: checked ? [required] : [],
-            emailCpf: checked ? [required, validateEmail] : [],
-            urlCpf: checked ? [required] : [],
-            phoneCpf: checked ? [required, validatePhone] : [],
-            nameCnpj: checked ? [required] : [],
-            emailCnpj: checked ? [validateEmail] : [],
-            phoneCnpj: checked ? [validatePhone] : [],
+            cpfInput: valueRadio === 'physical' ? [this.required, this.validateCpf] : [],
+            cnpjInput: valueRadio === 'legal' ? [this.required, validateCnpj] : [],
+            nameCpf: checked ? [this.required] : [],
+            emailCpf: checked ? [this.required, this.validateEmail] : [],
+            urlCpf: checked ? [this.required] : [],
+            phoneCpf: checked ? [this.required, this.validatePhone] : [],
+            nameCnpj: checked ? [this.required] : [],
+            emailCnpj: checked ? [this.validateEmail] : [],
+            phoneCnpj: checked ? [this.required, this.validatePhone] : [],
             dropdownLegal: '',
-            partnerName_0: checked ? [required] : [],
-            partnerCpf_0: checked ? [required, validateCpf] : [],
-            partnerPhone_0: checked ? [required, validatePhone] : [],
-            partnerName_1: checked ? [required] : [],
-            partnerCpf_1: checked ? [required, validateCpf] : [],
-            partnerPhone_1: checked ? [required, validatePhone] : [],
-            partnerName_2: checked ? [required] : [],
-            partnerCpf_2: checked ? [required, validateCpf] : [],
-            partnerPhone_2: checked ? [required, validatePhone] : [],
-            partnerName_3: checked ? [required] : [],
-            partnerCpf_3: checked ? [required, validateCpf] : [],
-            partnerPhone_3: checked ? [required, validatePhone] : [],
-            partnerName_4: checked ? [required] : [],
-            partnerCpf_4: checked ? [required, validateCpf] : [],
-            partnerPhone_4: checked ? [required, validatePhone] : [],
+            partnerName_0: checked ? [this.required] : [],
+            partnerCpf_0: checked ? [this.required, this.validateCpf] : [],
+            partnerPhone_0: checked ? [this.required, this.validatePhone] : [],
+            partnerName_1: checked ? [this.required] : [],
+            partnerCpf_1: checked ? [this.required, this.validateCpf] : [],
+            partnerPhone_1: checked ? [this.required, this.validatePhone] : [],
+            partnerName_2: checked ? [this.required] : [],
+            partnerCpf_2: checked ? [this.required, this.validateCpf] : [],
+            partnerPhone_2: checked ? [this.required, this.validatePhone] : [],
+            partnerName_3: checked ? [this.required] : [],
+            partnerCpf_3: checked ? [this.required, this.validateCpf] : [],
+            partnerPhone_3: checked ? [this.required, this.validatePhone] : [],
+            partnerName_4: checked ? [this.required] : [],
+            partnerCpf_4: checked ? [this.required, this.validateCpf] : [],
+            partnerPhone_4: checked ? [this.required, this.validatePhone] : [],
           }}
         >
           <Card>
             <CardContent>
               {this.handleChangeLabelCheck}
-              <h2>Identificação</h2>
-              <h3>
-              Escolha qual tipo de pessoa do seu recebedor e preencha o documento
-              </h3>
-              <span className={styles.spanRadioBtn}>Tipo de recebedor</span>
+              <h2>{t('pages.recipients.identification.title')}</h2>
+              <h3>{t('pages.recipients.identification.subtitle')}</h3>
+              <h3 className={styles.spanRadioBtn}>{t('pages.recipients.identification.type_label')}</h3>
               <RadioGroup
                 options={recipientTypes}
                 name={name}
@@ -240,14 +254,14 @@ class RecipientStep extends Component {
                 disabled={disabled}
                 error={error}
               />
-              { valueRadio === 'physic' &&
+              { valueRadio === 'physical' &&
               <div>
                 <Grid>
                   <Row>
                     <Col>
                       <FormInput
                         size={30}
-                        label="CPF"
+                        label={t('pages.recipients.identification.type_label_physical')}
                         name="cpfInput"
                         type="text"
                         maxLength={11}
@@ -261,7 +275,7 @@ class RecipientStep extends Component {
                 <br />
                 <br />
                 <FormCheckbox
-                  label="Quero incluir mais informações"
+                  label={t('pages.recipients.identification.physical_check_label')}
                   name={name}
                   error={error}
                   disabled={disabled}
@@ -278,7 +292,7 @@ class RecipientStep extends Component {
                     <Col>
                       <FormInput
                         size={30}
-                        label="CNPJ"
+                        label={t('pages.recipients.identification.type_label_legal')}
                         name="cnpjInput"
                         type="text"
                         maxLength={15}
@@ -292,7 +306,7 @@ class RecipientStep extends Component {
                 <br />
                 <br />
                 <FormCheckbox
-                  label="Quero incluir informações sobre a empresa e os sócios"
+                  label={t('pages.recipients.identification.legal_check_label')}
                   name={name}
                   error={error}
                   disabled={disabled}
@@ -304,17 +318,15 @@ class RecipientStep extends Component {
               }
               <br />
               <br />
-              {checked && valueRadio === 'physic' &&
+              {checked && valueRadio === 'physical' &&
               <div>
-                <h2>Recebedor</h2>
-                <h3>
-                  Preencha abaixo as informações sobre o seu recebedor
-                </h3>
+                <h2>{t('pages.recipients.identification.physical_title')}</h2>
+                <h3>{t('pages.recipients.identification.physical_subtitle')}</h3>
                 <Grid>
                   <Row>
                     <Col>
                       <FormInput
-                        label="Name"
+                        label={t('pages.recipients.identification.physical_name')}
                         size={30}
                         name="nameCpf"
                         value="name"
@@ -334,7 +346,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="E-mail"
+                      label={t('pages.recipients.identification.physical_email')}
                       size={30}
                       name="emailCpf"
                       value="email"
@@ -351,7 +363,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="Url"
+                      label={t('pages.recipients.identification.physical_url')}
                       size={30}
                       name="urlCpf"
                       value="url"
@@ -368,7 +380,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="Telefone"
+                      label={t('pages.recipients.identification.physical_phone')}
                       name="phoneCpf"
                       size={30}
                       value="phone"
@@ -382,15 +394,13 @@ class RecipientStep extends Component {
               </div>}
               {checked && valueRadio === 'legal' &&
               <div>
-                <h2>Empresa</h2>
-                <h3>
-                  Preencha abaixo as informações sobre a empresa do seu recebedor
-                </h3>
+                <h2>{t('pages.recipients.identification.legal_title')}</h2>
+                <h3>{t('pages.recipients.identification.legal_subtitle')}</h3>
                 <Grid>
                   <Row>
                     <Col>
                       <FormInput
-                        label="Name"
+                        label={t('pages.recipients.identification.legal_name')}
                         size={30}
                         name="nameCnpj"
                         value="name"
@@ -410,7 +420,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="E-mail (Opcional)"
+                      label={t('pages.recipients.identification.legal_email')}
                       size={30}
                       name="emailCnpj"
                       value="email"
@@ -427,7 +437,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="Url (Opcional)"
+                      label={t('pages.recipients.identification.legal_url')}
                       size={30}
                       name="urlCnpj"
                       value="url"
@@ -444,7 +454,7 @@ class RecipientStep extends Component {
                     tv={2}
                   >
                     <FormInput
-                      label="Telefone (Opcional)"
+                      label={t('pages.recipients.identification.legal_phone')}
                       size={30}
                       name="phoneCnpj"
                       value="phone"
@@ -456,10 +466,8 @@ class RecipientStep extends Component {
                     <label htmlFor="phoneCnpj" />
                   </Col>
                 </Row>
-                <h2>Sócios</h2>
-                <h3>
-                  Preencha abaixo as informações sobre os sócios do seu recebedor
-                </h3>
+                <h2>{t('pages.recipients.identification.legal_partnes_title')}</h2>
+                <h3>{t('pages.recipients.identification.legal_partnes_subtitle')}</h3>
                 <Grid>
                   <Row>
                     <Col>
@@ -467,7 +475,7 @@ class RecipientStep extends Component {
                         options={numbers}
                         name="dropdownLegal"
                         value={quantitySelected}
-                        label="Escolha a quantidade de sócios"
+                        label={t('pages.recipients.identification.legal_partners_label')}
                       />
                     </Col>
                   </Row>
@@ -488,7 +496,7 @@ class RecipientStep extends Component {
                           maxLength={50}
                           size={30}
                           type="text"
-                          label="Nome"
+                          label={t('pages.recipients.identification.legal_partners_name')}
                           name={`partnerName_${key}`}
                           value="partnerName"
                         />
@@ -503,7 +511,7 @@ class RecipientStep extends Component {
                           maxLength={50}
                           size={30}
                           type="text"
-                          label="CPF"
+                          label={t('pages.recipients.identification.legal_partners_cpf')}
                           name={`partnerCpf_${key}`}
                           value="partnerCpf"
                           mask={maskCpf}
@@ -520,7 +528,7 @@ class RecipientStep extends Component {
                           maxLength={50}
                           size={30}
                           type="text"
-                          label="Telefone (Opcional)"
+                          label={t('pages.recipients.identification.legal_partners_phone')}
                           name={`partnerPhone_${key}`}
                           value="partnerPhone"
                           mask={maskPhone}
@@ -534,8 +542,8 @@ class RecipientStep extends Component {
               <br />
             </CardContent>
             <CardActions>
-              <Button type="button" fill="outline">Cancelar</Button>
-              <Button type="submit" fill="gradient">Continuar</Button>
+              <Button type="button" fill="outline">{t('pages.recipients.identification.button_cancel')}</Button>
+              <Button type="submit" fill="gradient">{t('pages.recipients.identification.button_submit')}</Button>
             </CardActions>
           </Card>
         </Form>
@@ -558,6 +566,7 @@ RecipientStep.propTypes = {
   maskCpf: PropTypes.string,
   maskCnpj: PropTypes.string,
   maskPhone: PropTypes.string,
+  t: PropTypes.func.isRequired,
 }
 
 RecipientStep.defaultProps = {

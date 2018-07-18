@@ -1,10 +1,10 @@
 const recipientType = [
   {
-    name: 'Pessoa Física',
-    value: 'physic',
+    name: 'models.recipients.physical_person',
+    value: 'physical',
   },
   {
-    name: 'Pessoa Jurídica',
+    name: 'models.recipients.legal_person',
     value: 'legal',
   },
 ]

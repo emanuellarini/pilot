@@ -6,6 +6,7 @@ import RecipientStep from '../../../src/containers/RecipientStep'
 const RecipientStepContainer = () => (
   <RecipientStep
     numbers={legalQuantity.numbers}
+    t={translate => translate}
   />
 )
 

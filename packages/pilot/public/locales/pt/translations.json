@@ -352,6 +352,10 @@
       "cost": "Custo de processamento: R$ {{value}}",
       "refund": "Valor estornado: R$ {{value}}"
     },
+    "recipients": {
+      "physical_person": "Pessoa Física",
+      "legal_person": "Pessoa Jurídica"
+    },
     "transaction": {
       "acquirer_name": "Operadora do cartão",
       "acquirer_response_code": "Resposta da operadora",
@@ -440,6 +444,42 @@
       "result_suffix_message": "com sucesso",
       "step_title_confirmation": "Confirmação",
       "step_title_result": "Conclusão"
+    },
+    "recipients": {
+      "identification": {
+        "title": "Identificação",
+        "subtitle": "Escolha qual tipo de pessoa do seu recebedor e preencha o documento",
+        "type_label": "Tipo de recebedor",
+        "type_label_physical": "CPF",
+        "type_label_legal": "CNPJ",
+        "physical_check_label": "Quero incluir mais informações",
+        "legal_check_label": "Quero incluir informações sobre a empresa e os sócios",
+        "physical_title": "Recebedor",
+        "physical_subtitle": "Preencha abaixo as informações sobre o seu recebedor",
+        "physical_name": "Nome",
+        "physical_email": "E-mail",
+        "physical_url": "Url",
+        "physical_phone": "Telefone",
+        "legal_title": "Empresa",
+        "legal_subtitle": "Preencha abaixo as informações sobre a empresa do seu recebedor",
+        "legal_name": "Nome",
+        "legal_email": "E-mail (Opcional)",
+        "legal_url": "Url (Opcional)",
+        "legal_phone": "Telefone (Opcional)",
+        "legal_partners_title": "Sócios",
+        "legal_partners_subtitle": "Preencha abaixo as informações sobre os sócios do seu recebedor",
+        "legal_partners_label": "Escolha a quantidade de sócios",
+        "legal_partners_name": "Nome",
+        "legal_partners_cpf": "CPF",
+        "legal_partners_phone": "Telefone (Opcional)",
+        "button_cancel": "Cancelar",
+        "button_submit": "Continuar",
+        "error_required_value": "Esse campo não pode ficar em branco",
+        "error_validate_cpf": "CPF inválido",
+        "error_validate_cnpj": "CNPJ inválido",
+        "error_validate_email": "Este e-mail não é válido",
+        "error_validate_phone": "Digite um telefone de 9 dígitos com DDD"
+      }
     },
     "refund": {
       "conclusion": "conclusão",
